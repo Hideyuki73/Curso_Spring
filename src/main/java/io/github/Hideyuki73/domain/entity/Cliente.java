@@ -2,8 +2,10 @@ package io.github.Hideyuki73.domain.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
+import org.hibernate.validator.constraints.br.CPF;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.Set;
 
 @Entity
@@ -21,9 +23,12 @@ public class Cliente {
     private Integer id;
 
     @Column(name = "nome", length = 100)
+    @NotEmpty(message = "Campo nome obrigatorio")//Nao permite estar vazio, mostra uma mensagem caso esteja
     private String nome;
 
     @Column(name = "cpf", length = 11)
+    @NotEmpty(message = "Campo cpf obrigatorio")
+    @CPF(message = "Informe um CPF valido")
     private String cpf;
 
     public Cliente(Integer id, String nome) {

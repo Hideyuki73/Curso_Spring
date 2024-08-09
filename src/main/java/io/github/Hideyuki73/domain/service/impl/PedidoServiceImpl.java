@@ -5,6 +5,7 @@ import io.github.Hideyuki73.domain.entity.ItemPedido;
 import io.github.Hideyuki73.domain.entity.Pedido;
 import io.github.Hideyuki73.domain.entity.Produto;
 import io.github.Hideyuki73.domain.entity.enums.StatusPedido;
+import io.github.Hideyuki73.domain.exception.PedidoNaoEncontradoException;
 import io.github.Hideyuki73.domain.exception.RegraNegocioException;
 import io.github.Hideyuki73.domain.repository.Clientes;
 import io.github.Hideyuki73.domain.repository.ItemsPedido;

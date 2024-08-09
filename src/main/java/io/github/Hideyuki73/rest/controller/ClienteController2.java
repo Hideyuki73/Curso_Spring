@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,7 +31,7 @@ public class ClienteController2 {
 
     @PostMapping("/saveCliente") //Metodo post, inserir informacao
     @ResponseStatus(HttpStatus.CREATED)
-    public Cliente saveCliente(@RequestBody Cliente cliente ){
+    public Cliente saveCliente(@RequestBody @Valid Cliente cliente ){//@Valid para validar se tem os campos necessario
         return clientes.save( cliente );
     }
 
@@ -45,7 +46,7 @@ public class ClienteController2 {
 
     @PutMapping("/updateCliente/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void updateCliente(@PathVariable Integer id, @RequestBody Cliente cliente ){
+    public void updateCliente(@PathVariable Integer id, @RequestBody @Valid Cliente cliente ){
          clientes.findById(id).map( clienteExistente -> {
             cliente.setId(clienteExistente.getId());
             clientes.save(cliente);

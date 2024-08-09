@@ -1,4 +1,4 @@
-package io.github.Hideyuki73.domain.service.impl;
+package io.github.Hideyuki73.domain.exception;
 
 public class PedidoNaoEncontradoException extends RuntimeException {
 

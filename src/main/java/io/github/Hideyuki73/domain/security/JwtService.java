@@ -1,5 +1,6 @@
-package io.github.Hideyuki73;
+package io.github.Hideyuki73.domain.security;
 
+import io.github.Hideyuki73.VendasApplication;
 import io.github.Hideyuki73.domain.entity.Usuario;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
@@ -13,7 +14,6 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
-import java.util.HashMap;
 
 @Service
 public class JwtService {

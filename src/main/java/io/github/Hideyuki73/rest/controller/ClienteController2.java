@@ -4,14 +4,10 @@ import io.github.Hideyuki73.domain.repository.Clientes;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Optional;
-
 
 @RestController
 @RequestMapping ("/api/clientes")
@@ -55,13 +51,12 @@ public class ClienteController2 {
     }
 
     @GetMapping
-    public ResponseEntity find ( Cliente cliente ){
+    public List<Cliente> find ( Cliente cliente ){
         ExampleMatcher matcher = ExampleMatcher
                 .matching()
                 .withIgnoreCase()
                 .withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING);
         Example example = Example.of(cliente, matcher);
-        List<Cliente> list = clientes.findAll(example);
-        return ResponseEntity.ok( list );
+        return clientes.findAll(example);
     }
 }

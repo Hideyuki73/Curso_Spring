@@ -1,6 +1,7 @@
 package io.github.Hideyuki73.domain.service.impl;
 
 import io.github.Hideyuki73.domain.entity.Usuario;
+import io.github.Hideyuki73.domain.exception.SenhaInvalidaException;
 import io.github.Hideyuki73.domain.repository.Usuarios;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
@@ -26,6 +27,14 @@ public class UsuarioServiceImpl implements UserDetailsService {
         return usuarioRepository.save(usuario);
     }
 
+    public UserDetails autenticar(Usuario usuario) {
+        UserDetails user = loadUserByUsername(usuario.getLogin());
+        boolean senhaCorreta = passwordEncoder.matches(usuario.getSenha(), user.getPassword());
+        if(senhaCorreta) {
+            return user;
+        }
+        throw new SenhaInvalidaException();
+    }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
